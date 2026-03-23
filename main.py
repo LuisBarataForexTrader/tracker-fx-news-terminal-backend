@@ -18,41 +18,42 @@ RSS_FEEDS = [
     "https://www.investing.com/rss/news.rss",
     "https://www.investing.com/rss/news_25.rss",
     "https://www.investing.com/rss/news_14.rss",
-    "https://feeds.marketwatch.com/marketwatch/topstories/",
-    "https://feeds.marketwatch.com/marketwatch/marketpulse/",
     "https://www.cnbc.com/id/100003114/device/rss/rss.html",
     "https://www.cnbc.com/id/10000664/device/rss/rss.html",
     "https://www.cnbc.com/id/20910258/device/rss/rss.html",
+    "https://feeds.marketwatch.com/marketwatch/topstories/",
+    "https://feeds.marketwatch.com/marketwatch/marketpulse/",
     "https://feeds.finance.yahoo.com/rss/2.0/headline?s=^GSPC&region=US&lang=en-US",
     "https://www.forexlive.com/feed/news",
     "https://www.fxstreet.com/rss/news",
+    "https://www.dailyfx.com/feeds/all",
 ]
 
 HIGH_KEYWORDS = [
-    "fed", "federal reserve", "interest rate", "rate decision", "rate hike", "rate cut",
-    "ecb", "european central bank", "boe", "bank of england", "boj", "bank of japan",
-    "cpi", "inflation", "nfp", "non-farm", "gdp", "unemployment",
-    "war", "attack", "invasion", "sanction", "crisis",
-    "opec", "oil shock", "recession", "default", "crash",
-    "powell", "lagarde", "yellen", "emergency"
+    "fed","federal reserve","interest rate","rate decision","rate hike","rate cut",
+    "ecb","european central bank","boe","bank of england","boj","bank of japan",
+    "cpi","inflation","nfp","non-farm","gdp","unemployment",
+    "war","attack","invasion","sanction","crisis",
+    "opec","oil shock","recession","default","crash",
+    "powell","lagarde","yellen","emergency","nuclear","collapse"
 ]
 
 MEDIUM_KEYWORDS = [
-    "earnings", "gdp", "trade", "deficit", "surplus", "pmi", "retail sales",
-    "housing", "jobs", "employment", "manufacturing", "output",
-    "central bank", "monetary", "fiscal", "stimulus", "tariff",
-    "ipo", "merger", "acquisition", "bankruptcy"
+    "earnings","trade","deficit","surplus","pmi","retail sales",
+    "housing","jobs","employment","manufacturing","output",
+    "central bank","monetary","fiscal","stimulus","tariff",
+    "ipo","merger","acquisition","bankruptcy","debt","budget"
 ]
 
 ASSET_KEYWORDS = {
-    "USD": ["dollar", "usd", "fed", "federal reserve", "us economy", "nfp", "cpi us"],
-    "EUR": ["euro", "eur", "ecb", "european", "eurozone", "germany", "france"],
-    "GBP": ["pound", "gbp", "boe", "britain", "uk economy", "sterling"],
-    "GOLD": ["gold", "xau", "bullion", "safe haven"],
-    "OIL": ["oil", "crude", "opec", "brent", "wti", "energy", "petroleum"],
-    "SP500": ["s&p", "sp500", "nasdaq", "dow", "wall street", "stocks", "equities"],
-    "BTC": ["bitcoin", "btc", "crypto", "ethereum", "digital asset"],
-    "JPY": ["yen", "jpy", "boj", "japan", "nikkei"],
+    "USD": ["dollar","usd","fed","federal reserve","us economy","nfp","cpi us"],
+    "EUR": ["euro","eur","ecb","european","eurozone","germany","france"],
+    "GBP": ["pound","gbp","boe","britain","uk economy","sterling"],
+    "GOLD": ["gold","xau","bullion","safe haven"],
+    "OIL": ["oil","crude","opec","brent","wti","energy","petroleum"],
+    "SP500": ["s&p","sp500","nasdaq","dow","wall street","stocks","equities"],
+    "BTC": ["bitcoin","btc","crypto","ethereum","digital asset"],
+    "JPY": ["yen","jpy","boj","japan","nikkei"],
 }
 
 DB_FILE = "news.db"
@@ -95,12 +96,13 @@ def detect_assets(headline):
     return ",".join(found) if found else "USD"
 
 def get_source_name(url):
-    if "investing.com" in url: return "investing.com"
+    if "investing.com" in url: return "investing"
     if "marketwatch" in url: return "marketwatch"
     if "cnbc.com" in url: return "cnbc"
     if "yahoo" in url: return "yahoo finance"
     if "forexlive" in url: return "forexlive"
     if "fxstreet" in url: return "fxstreet"
+    if "dailyfx" in url: return "dailyfx"
     return url
 
 class NewsItem(BaseModel):
